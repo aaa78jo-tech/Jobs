@@ -28,6 +28,13 @@
 
 المساعد حاليًا يعتمد على قاعدة إجابات جاهزة مبنية على كلمات مفتاحية (`src/utils/assistant.ts`) وليس نموذج ذكاء اصطناعي حقيقي، تمهيدًا لربطه لاحقًا بواجهة Claude API.
 
+## نشر على Play Store
+
+- `app.json` → `android.package`: `com.aaa78jotech.jobs`
+- `eas.json` → بروفايلات EAS Build (`preview` = APK للتجربة، `production` = AAB للنشر)
+- `privacy.html` → سياسة الخصوصية (بالعربي/الإنجليزي)، لازم تُستضاف على رابط عام قبل تقديمها في Play Console
+- `store-assets/` → أيقونة القائمة 512×512 و Feature graphic 1024×500 لصفحة Store listing
+
 ## التشغيل محليًا
 
 ```bash
