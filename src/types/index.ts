@@ -1,3 +1,5 @@
+import type { ImageSourcePropType } from 'react-native';
+
 export interface PracticalProblem {
   id: string;
   question: string;
@@ -15,6 +17,7 @@ export interface TopicNode {
   id: string;
   label: string;
   answer: string;
+  image?: ImageSourcePropType;
   children?: TopicNode[];
 }
 
@@ -43,4 +46,5 @@ export interface ChatMessage {
   text: string;
   professionId?: string;
   suggestions?: ChatSuggestion[];
+  image?: ImageSourcePropType;
 }

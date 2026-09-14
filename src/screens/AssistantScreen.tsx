@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import {
   View,
   Text,
+  Image,
   FlatList,
   TextInput,
   TouchableOpacity,
@@ -105,6 +106,7 @@ export default function AssistantScreen({ route }: Props) {
       id: nextId(),
       role: 'assistant',
       text: node.answer,
+      image: node.image,
       suggestions: node.children?.map((c) => ({ id: c.id, label: c.label })),
     };
 
@@ -164,6 +166,9 @@ export default function AssistantScreen({ route }: Props) {
                   item.role === 'user' ? styles.bubbleUser : styles.bubbleAssistant,
                 ]}
               >
+                {!!item.image && (
+                  <Image source={item.image} style={styles.bubbleImage} resizeMode="cover" />
+                )}
                 <Text
                   style={[
                     styles.bubbleText,
@@ -239,6 +244,13 @@ const styles = StyleSheet.create({
   messageRowUser: { alignItems: 'flex-end', marginBottom: 10 },
   messageRowAssistant: { alignItems: 'flex-start', marginBottom: 10 },
   bubble: { maxWidth: '85%', borderRadius: 16, padding: 12 },
+  bubbleImage: {
+    width: '100%',
+    aspectRatio: 1,
+    borderRadius: 12,
+    marginBottom: 8,
+    backgroundColor: colors.surface,
+  },
   bubbleUser: { backgroundColor: colors.bubbleUser },
   bubbleAssistant: { backgroundColor: colors.bubbleAssistant },
   bubbleText: { fontSize: 14, color: colors.text, textAlign: 'right', lineHeight: 21 },
