@@ -11,6 +11,13 @@ export interface DailyTask {
   description: string;
 }
 
+export interface TopicNode {
+  id: string;
+  label: string;
+  answer: string;
+  children?: TopicNode[];
+}
+
 export interface Profession {
   id: string;
   name: string;
@@ -21,7 +28,13 @@ export interface Profession {
   requiredSkills: string[];
   dailyTasks: DailyTask[];
   problems: PracticalProblem[];
+  topics?: TopicNode[];
   isFeatured?: boolean;
+}
+
+export interface ChatSuggestion {
+  id: string;
+  label: string;
 }
 
 export interface ChatMessage {
@@ -29,4 +42,5 @@ export interface ChatMessage {
   role: 'user' | 'assistant';
   text: string;
   professionId?: string;
+  suggestions?: ChatSuggestion[];
 }
