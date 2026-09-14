@@ -13,6 +13,7 @@ import type { CompositeScreenProps } from '@react-navigation/native';
 import type { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import { professions } from '../data/professions';
 import { colors } from '../theme/colors';
+import { useFavorites } from '../context/FavoritesContext';
 import type { RootStackParamList, TabParamList } from '../navigation/types';
 import type { Profession } from '../types';
 
@@ -23,6 +24,7 @@ type Props = CompositeScreenProps<
 
 export default function HomeScreen({ navigation }: Props) {
   const [query, setQuery] = useState('');
+  const { isFavorite, toggleFavorite } = useFavorites();
 
   const filtered = useMemo(() => {
     if (!query.trim()) return professions;
@@ -48,6 +50,12 @@ export default function HomeScreen({ navigation }: Props) {
           {item.shortDescription}
         </Text>
       </View>
+      <TouchableOpacity
+        onPress={() => toggleFavorite(item.id)}
+        hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+      >
+        <Text style={styles.favoriteIcon}>{isFavorite(item.id) ? '⭐' : '☆'}</Text>
+      </TouchableOpacity>
     </TouchableOpacity>
   );
 
@@ -112,4 +120,5 @@ const styles = StyleSheet.create({
   cardTitle: { fontSize: 17, fontWeight: '700', color: colors.text, textAlign: 'right' },
   cardCategory: { fontSize: 12, color: colors.primary, textAlign: 'right', marginTop: 2 },
   cardDesc: { fontSize: 13, color: colors.textMuted, textAlign: 'right', marginTop: 4 },
+  favoriteIcon: { fontSize: 22, marginRight: 8, color: colors.accent },
 });

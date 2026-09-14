@@ -24,6 +24,7 @@
 - شاشة رئيسية لاستعراض المهن والبحث بينها.
 - شاشة تفاصيل لكل مهنة: نبذة، مهارات مطلوبة، مهام يومية.
 - مساعد تفاعلي (شاشة "المساعد") يجاوب على أسئلة/مشاكل عملية شائعة لكل مهنة، مع إمكانية اختيار مهنة كسياق للمحادثة.
+- ملف شخصي (شاشة "ملفي"): اسم المستخدم والمهن المفضلة (بالضغط على ⭐ في أي مهنة)، محفوظة محليًا على الجهاز عبر AsyncStorage.
 
 المساعد حاليًا يعتمد على قاعدة إجابات جاهزة مبنية على كلمات مفتاحية (`src/utils/assistant.ts`) وليس نموذج ذكاء اصطناعي حقيقي، تمهيدًا لربطه لاحقًا بواجهة Claude API.
 
@@ -41,7 +42,8 @@ src/
   data/professions.ts     # بيانات المهن والمشاكل الشائعة
   types/                  # أنواع TypeScript
   navigation/              # Stack + Tabs
-  screens/                 # HomeScreen, ProfessionDetailScreen, AssistantScreen
+  screens/                 # HomeScreen, ProfessionDetailScreen, AssistantScreen, ProfileScreen
+  context/FavoritesContext.tsx  # حالة الاسم والمهن المفضلة، محفوظة بـ AsyncStorage
   utils/assistant.ts       # منطق مطابقة الأسئلة بالإجابات
   theme/colors.ts          # ألوان التطبيق
 ```

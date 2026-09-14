@@ -6,6 +6,7 @@ import { Text } from 'react-native';
 import HomeScreen from '../screens/HomeScreen';
 import AssistantScreen from '../screens/AssistantScreen';
 import ProfessionDetailScreen from '../screens/ProfessionDetailScreen';
+import ProfileScreen from '../screens/ProfileScreen';
 import { colors } from '../theme/colors';
 import type { RootStackParamList, TabParamList } from './types';
 
@@ -36,6 +37,14 @@ function Tabs() {
         options={{
           title: 'المساعد',
           tabBarIcon: ({ color }) => <Text style={{ fontSize: 20, color }}>💬</Text>,
+        }}
+      />
+      <Tab.Screen
+        name="Profile"
+        component={ProfileScreen}
+        options={{
+          title: 'ملفي',
+          tabBarIcon: ({ color }) => <Text style={{ fontSize: 20, color }}>👤</Text>,
         }}
       />
     </Tab.Navigator>

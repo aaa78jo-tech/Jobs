@@ -4,12 +4,14 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { getProfessionById } from '../data/professions';
 import { colors } from '../theme/colors';
+import { useFavorites } from '../context/FavoritesContext';
 import type { RootStackParamList } from '../navigation/types';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'ProfessionDetail'>;
 
 export default function ProfessionDetailScreen({ route, navigation }: Props) {
   const profession = getProfessionById(route.params.professionId);
+  const { isFavorite, toggleFavorite } = useFavorites();
 
   if (!profession) {
     return (
@@ -28,6 +30,12 @@ export default function ProfessionDetailScreen({ route, navigation }: Props) {
             <Text style={styles.title}>{profession.name}</Text>
             <Text style={styles.category}>{profession.category}</Text>
           </View>
+          <TouchableOpacity
+            onPress={() => toggleFavorite(profession.id)}
+            hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+          >
+            <Text style={styles.favoriteIcon}>{isFavorite(profession.id) ? '⭐' : '☆'}</Text>
+          </TouchableOpacity>
         </View>
 
         <Text style={styles.sectionTitle}>نبذة عن المهنة</Text>
@@ -75,6 +83,7 @@ const styles = StyleSheet.create({
   icon: { fontSize: 48, marginLeft: 16 },
   title: { fontSize: 24, fontWeight: '800', color: colors.text, textAlign: 'right' },
   category: { fontSize: 14, color: colors.primary, textAlign: 'right', marginTop: 4 },
+  favoriteIcon: { fontSize: 28, color: colors.accent, marginRight: 8 },
   sectionTitle: {
     fontSize: 17,
     fontWeight: '700',
