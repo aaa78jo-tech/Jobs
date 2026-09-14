@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Jobs",
-    "slug": "Jobs",
+    "name": "المهن",
+    "slug": "jobs-professions",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
